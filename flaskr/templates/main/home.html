@@ -1,19 +1,13 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-<div class="container-fluid text-center">
-    <img src="" alt="Deliv3r">
-</div>
-<div class="container-fluid">
-    <p>We render the gap between deliverymen and clients non-existent, by connecting them togething all in one location, facilitating courier services fast, efficiently and securely.</p>
-</div>
-<div class="container-fluid text-center">
-    <a href="/deliverer/register">Offer Services</a>
-</div>
+<div class="container-fluid contain text-center grad ">
+        <img class="logo" src="../static\images\deliver-logo.png" alt="Deliv3r">
 
-<div class="container-fluid text-center">
-    <a href="/deliveree/register">Seek Services</a>
+        <p>We render the gap between deliverymen and clients non-existent, by connecting them togething all in one location, facilitating courier   services fast, efficiently and securely.</p>
+        <a class="btn btn-outline-dark btn-theme btn-lg " href="/deliverer/register">Offer Services</a>
+        <hr>
+        <a class="btn btn-outline-dark btn-theme btn-lg" href="/deliveree/register">Seek Services</a>
 </div>
-
 
 {% endblock content %}

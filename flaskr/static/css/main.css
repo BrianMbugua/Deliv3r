@@ -1,0 +1,24 @@
+body{
+    background-color: rgba(255, 255, 255, 0.918);
+}
+
+.grad {
+    background-image: linear-gradient(to right, rgba(177, 226, 241, 0) , rgba(69, 124, 141, 0.8));
+  }
+
+
+.logo {
+    padding: 1%;
+}
+.contain{
+  
+    background-color: white;
+    margin-bottom: 8px;
+    margin-top: 1px;
+}
+hr{
+    color: rgb(221, 246, 253);
+}
+.btn-theme{
+    background-color: linear-gradient(45deg, rgba(177, 226, 241, 0) , rgba(69, 124, 141, 0.8));
+}
