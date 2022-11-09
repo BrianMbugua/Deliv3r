@@ -1,5 +1,6 @@
 body{
-    background-color: rgba(255, 255, 255, 0.918);
+    background-color: rgb(218, 214, 214);
+
 }
 
 .grad {
@@ -21,4 +22,30 @@ hr{
 }
 .btn-theme{
     background-color: linear-gradient(45deg, rgba(177, 226, 241, 0) , rgba(69, 124, 141, 0.8));
+}
+.btn-1{
+    background-color: rgba(69, 124, 141, 1);
+    border: none;
+    outline: none;
+    height: 50px;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btn-1:hover{
+    background: white;
+    border: 1px solid;
+    color: black;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.row{
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
 }

@@ -2,8 +2,46 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    <h2 class="text-center"> Register as a Deliveryman </h2>
-</div>
-
+    <div class="section mt-3">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-lg-5">
+                    <img src="../static\images\deliver-logo.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-7 px-3 pt-3">
+                    <h1 class="font-weight-bold py-3">Deliv3r</h1>
+                    <h4>Create a Deliverer Account</h4>
+                    <form action="">
+                        <div class="form-row">
+                            <div class="col-lg-7"> 
+                                <input type="text" placeholder="First Name" class="form-control my-3 p-3">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7"> 
+                                <input type="text" placeholder="Last Name" class="form-control my-3 p-3">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7"> 
+                                <input type="email" placeholder="Email" class="form-control my-3 p-3">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7"> 
+                                <input type="password" placeholder="Password" class="form-control my-3 p-3">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7"> 
+                                <button type="button" class="form-control btn-1 mb-3">Register
+                            </div>
+                            <a href="#">Forgot Password</a>
+                            <p>Dont Have An Account? <a href="#">Register Here</a> </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
