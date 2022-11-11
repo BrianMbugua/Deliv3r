@@ -7,10 +7,9 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SECRET_KEY'] = "super secret"
-
+app.app_context().push()
 
 db = SQLAlchemy(app)
-
 
 
 from flaskr.api.routes import api
