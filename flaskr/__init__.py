@@ -21,6 +21,9 @@ def create_app():
     app.register_blueprint(deliverer)
     app.register_blueprint(deliveree)
 
+    
+    
     return app
+
 app = create_app()
 db = SQLAlchemy(app)
