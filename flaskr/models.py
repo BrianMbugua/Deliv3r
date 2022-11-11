@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Deliverer(db.Model):
-    id = db.Column(db.Integer, primmary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(20), nullable=False)
