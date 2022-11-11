@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_bcrypt import Bcrypt
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,7 +11,7 @@ app.config['SECRET_KEY'] = "super secret"
 app.app_context().push()
 
 db = SQLAlchemy(app)
-
+bcrypt = Bcrypt(app)
 
 from flaskr.api.routes import api
 from flaskr.main.routes import main
