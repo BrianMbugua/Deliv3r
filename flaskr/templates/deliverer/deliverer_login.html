@@ -1,0 +1,59 @@
+{% extends "deliverer/base_no_nav.html" %}
+
+{% block content %}
+
+<div class="section mt-3">
+    <div class="container wrap">
+        <div class="row g-0">
+            <div class="col-lg-5">
+                <img src="../static\images\deliver-logo.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-7 px-3 pt-3">
+                <h1 class="font-weight-bold py-3">Deliv3r</h1>
+                <h4>LogIn As A Deliverer</h4>
+                
+                <form method="POST" action="/deliverer/login" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                        <div class="col-lg-7">
+        
+                                {% if form.email.errors %}
+                                    {{ form.email(class="form-control my-3 p-2 is-invalid", placeholder="Email")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class="form-control my-3 p-2", placeholder="Email")}}
+                                {% endif %}    
+        
+                        </div>
+                        <div class="col-lg-7">
+                            {% if form.password.errors %}
+                            {{ form.password(class="form-control is-invalid", placeholder="Password")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-control my-3 p-2", placeholder="Password")}}
+                        {% endif %}    
+        
+                        </div>
+                    </fieldset>
+                    <div class="col-lg-7">
+                        {{ form.submit(class="form-control btn-1 mb-3") }}
+                    </div> 
+                   <a href="#">Forgot Password</a>
+                        <p>Dont Have An Account? <a href="/deliverer/register">Register Here</a> </p>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

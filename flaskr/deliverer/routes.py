@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, flash
 from flaskr import bcrypt, db
-from flaskr.deliverer.forms import RegistrationForm
+from flaskr.deliverer.forms import RegistrationForm, LoginForm
 from flaskr.models import Deliverer
 
 
@@ -20,8 +20,13 @@ def register():
         db.session.add(deliverer)
         db.session.commit()
         flash('Your Account has been created! You can now login', 'success')
+        return redirect('login')
     else:
         return render_template("deliverer_register.html", form=form)
 
 
-    return render_template("deliverer_register.html", form=form)
+@deliverer.route('/login', methods=["GET","POST"])
+def login():
+    form = LoginForm()
+
+    return render_template("deliverer_login.html", form=form)

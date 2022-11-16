@@ -14,4 +14,14 @@ class RegistrationForm(FlaskForm):
     def validate_email(self, email):
         deliverer = Deliverer.query.filter_by(email=email.data).first()
         if deliverer:
-            raise ValidationError('Email is already linked to another account')
+            raise ValidationError('Email is already linked to another account.')
+
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Log In')
+
+    def validate_email(self, email):
+        deliverer = Deliverer.query.filter_by(email=email.data).first()
+        if not deliverer:
+            raise ValidationError('Email is NOT linked to any account.')
