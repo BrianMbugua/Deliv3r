@@ -62,6 +62,5 @@ def logout():
 
 @customer.route('/home')
 def home():
-    flash("Test Message", 'info')
     return render_template("customer_home.html")
 
