@@ -24,23 +24,21 @@
       </nav>
 
       <!-- Render Flash Messages on webpage -->
-      <div class="=container mt-1">
+    <div class="section position-absolute bottom-0 start-50 translate-middle-x">
+      <div class="container text-center">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        <div class="row  d-flex justify-content-around">
-            {% for category, message in messages %}
-            <div class="col ">
-                <div class="alert alert-{{ category }} w-20">
-                    <p class="text-center">{{ message }}</p>
-                </div>
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              <p class="">{{ message }}</p>
             </div>
-            {% endfor%}
-        </div>
+          
+          {% endfor%}
     
         {% endif %}
         {% endwith %}
+      </div>
     </div>
-
 
       {% block content %}
 
