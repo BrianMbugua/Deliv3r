@@ -16,6 +16,7 @@ body{
     background-color: white;
     margin-bottom: 8px;
     margin-top: 1px;
+    border-radius: 20px;
 }
 .contain-sm{
     width: fit-content;
@@ -23,7 +24,7 @@ body{
     justify-content: center;
 }
 hr{
-    color: rgb(221, 246, 253);
+    color: rgb(33, 71, 82);
 }
 .btn-theme{
     background-color: linear-gradient(45deg, rgba(177, 226, 241, 0) , rgba(69, 124, 141, 0.8));
@@ -44,7 +45,7 @@ hr{
 }
 
 
-.row{
+.row-x{
     background-color: white;
     border-radius: 30px;
     box-shadow: 12px 12px 22px grey;
