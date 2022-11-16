@@ -25,7 +25,7 @@ class Courier(db.Model, UserMixin):
 #Create Customer database table
 class Customer(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
 
