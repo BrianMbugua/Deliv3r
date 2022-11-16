@@ -23,13 +23,13 @@ login_manager.login_message_category = 'info'
 
 from flaskr.api.routes import api
 from flaskr.main.routes import main
-from flaskr.deliverer.routes import deliverer
-from flaskr.deliveree.routes import deliveree
+from flaskr.courier.routes import courier
+from flaskr.customer.routes import customer
 
 
 app.register_blueprint(api)
 app.register_blueprint(main)
-app.register_blueprint(deliverer)
-app.register_blueprint(deliveree)
+app.register_blueprint(courier)
+app.register_blueprint(customer)
 
 

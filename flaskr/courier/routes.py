@@ -1,62 +1,62 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flaskr import bcrypt, db, main
-from flaskr.deliverer.forms import RegistrationForm, LoginForm
-from flaskr.models import Deliverer
+from flaskr.courier.forms import RegistrationForm, LoginForm
+from flaskr.models import Courier
 from flask_login import login_user, login_required, current_user, logout_user
 
 
-deliverer = Blueprint('deliverer', __name__, url_prefix='/deliverer', static_folder="static", template_folder="../templates/deliverer")
+courier = Blueprint('courier', __name__, url_prefix='/courier', static_folder="static", template_folder="../templates/courier")
 
 
-@deliverer.route('/register', methods=["GET", "POST"])
+@courier.route('/register', methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         
-        deliverer = Deliverer(
+        courier = Courier(
             firstname=form.firstname.data, lastname=form.lastname.data, email=form.email.data, password=hashed_password)
 
-        db.session.add(deliverer)
+        db.session.add(courier)
         db.session.commit()
         flash('Your Account has been created! You can now login', 'success')
         return redirect('login')
     else:
-        return render_template("deliverer_register.html", form=form)
+        return render_template("courier_register.html", form=form)
 
 
-@deliverer.route('/login', methods=["GET","POST"])
+@courier.route('/login', methods=["GET","POST"])
 def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        deliverer = Deliverer.query.filter_by(email=form.email.data).first()
+        courier = Courier.query.filter_by(email=form.email.data).first()
 
-        #if deliverer exists in the database, proceed to validate the password and email entered
-        if deliverer:
+        #if courier exists in the database, proceed to validate the password and email entered
+        if courier:
             #Check entered password against the hashed password stored in the database
-            if bcrypt.check_password_hash(deliverer.password, form.password.data):
-                login_user(deliverer)
+            if bcrypt.check_password_hash(courier.password, form.password.data):
+                login_user(courier)
                 #Load the next webpage
                 next_page = request.args.get('next')
                 flash('Log In Successful', 'success')
-                return redirect(next_page) if next_page else redirect(url_for('deliverer.home'))
+                return redirect(next_page) if next_page else redirect(url_for('courier.home'))
             else:
                 flash('Log In Unsuccessful. Check Password and Try Again.', 'danger')
         else:
             flash('Log In Unsuccessful. No user exists with that email. Check email and Try Again.', 'danger')
-            return render_template("deliverer_login.html")
+            return render_template("courier_login.html")
 
-    return render_template("deliverer_login.html", form=form)
+    return render_template("courier_login.html", form=form)
 
-@deliverer.route('/logout')
+@courier.route('/logout')
 def logout():
     logout_user()
     flash('Log Out Successful!', 'success')
     return redirect(url_for('main.home'))
 
-@deliverer.route('/home')
+@courier.route('/home')
 def home():
 
-    return render_template("deliverer_home.html")
+    return render_template("courier_home.html")

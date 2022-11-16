@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError 
-from flaskr.models import Deliverer
+from flaskr.models import Courier
 
 class RegistrationForm(FlaskForm):
     firstname = StringField('First Name', validators=[DataRequired(), Length(min=2, max=10)])
@@ -12,8 +12,8 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
-        deliverer = Deliverer.query.filter_by(email=email.data).first()
-        if deliverer:
+        courier = Courier.query.filter_by(email=email.data).first()
+        if courier:
             raise ValidationError('Email is already linked to another account.')
 
 class LoginForm(FlaskForm):
@@ -22,6 +22,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log In')
 
     def validate_email(self, email):
-        deliverer = Deliverer.query.filter_by(email=email.data).first()
-        if not deliverer:
+        courier = Courier.query.filter_by(email=email.data).first()
+        if not courier:
             raise ValidationError('Email is NOT linked to any account.')
