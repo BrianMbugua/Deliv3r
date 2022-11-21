@@ -28,9 +28,9 @@ class LoginForm(FlaskForm):
             raise ValidationError('Email is NOT linked to any account.')
 
 class ServicesForm(FlaskForm):
-    type = SelectField(u'Service Type', choices=[('TXI', 'Taxi'), ('CH', 'Cargo Heavy'), ('CM', 'Cargo Medium'), ('CL', 'Cargo Light'), ('CF', 'Cargo Feather')])
+    type = SelectField(u'Service Type', choices=[('Taxi', 'Taxi'), ('Cargo Heavy', 'Cargo Heavy'), ('Cargo Medium', 'Cargo Medium'), ('Cargo Light', 'Cargo Light'), ('Cargo Feather', 'Cargo Feather')])
     location = StringField('Location', validators=[DataRequired()])
-    vehicle = StringField('Vehicle', validators=[DataRequired()])
+    vehicle = SelectField(u'Vehicle Type', choices=[('', ''), ('PICKUP', 'PICKUP'), ('CAR', 'CAR'), ('LORRY', 'LORRY'), ('MOTORCYCLE', 'MOTORCYCLE'), ('TROLLEY', 'TROLLEY')], validators=[DataRequired()])
     description = TextAreaField('Vehicle description')
     photo = FileField('Photo', validators=[FileAllowed(['jpg', 'png']), DataRequired()])
     submit = SubmitField('ADD')

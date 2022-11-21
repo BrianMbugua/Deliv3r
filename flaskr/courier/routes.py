@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flaskr import bcrypt, db, main
 from flaskr.courier.forms import RegistrationForm, LoginForm, ServicesForm
-from flaskr.models import Courier
+from flaskr.models import Courier, Services
 from flask_login import login_user, login_required, current_user, logout_user
 
 
@@ -69,10 +69,21 @@ def offers():
 
     return render_template("offers.html")
 
-@courier.route('/services')
+@courier.route('/services', methods=["POST","GET"])
 def services():
-    flash("Whats going on", "danger")
     form = ServicesForm()
+    
+    service = Services.query.filter_by(email=current_user.email).all()
 
-    return render_template("courier_services.html", form=form)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            service = Services(type=form.type.data, location=form.location.data,
+                               description=form.description.data, vehicle=form.vehicle.data, email=current_user.email)
+            db.session.add(service)
+            db.session.commit()
+            flash("Service Added Successfuly", "success")
+            return redirect(url_for('courier.services'))
+
+
+    return render_template("courier_services.html", form=form, service=service)
 

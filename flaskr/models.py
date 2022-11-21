@@ -25,7 +25,8 @@ class Services(db.Model, UserMixin):
     location = db.Column(db.String(20), nullable=False)
     vehicle = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(20), nullable=False)
-    photo = db.Column(db.String(20), nullable=False)
+    photo = db.Column(db.String(20), nullable=False, default="default.jpg")
+    email = db.Column(db.String(20), nullable=False)
 
     def __repr__(self):
         return '<Vehicle %r>' % self.vehicle

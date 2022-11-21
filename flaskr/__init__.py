@@ -16,7 +16,7 @@ app.app_context().push()
 db = SQLAlchemy(app)
 
 #setup database migrations
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, render_as_batch=True)
 
 #Initialise encryption
 bcrypt = Bcrypt(app)
