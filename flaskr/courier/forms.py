@@ -25,3 +25,7 @@ class LoginForm(FlaskForm):
         courier = Courier.query.filter_by(email=email.data).first()
         if not courier:
             raise ValidationError('Email is NOT linked to any account.')
+
+class ServicesForm(FlaskForm):
+    type = SelectField(u'Service Type', choices=[('TXI', 'Taxi'), ('CH', 'Cargo Heavy'), ('CM', 'Cargo Medium'), ('CL', 'Cargo Light'), ('CF', 'Cargo Feather')])
+    
