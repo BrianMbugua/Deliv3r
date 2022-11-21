@@ -8,31 +8,36 @@
             <h3 class="text-center"> Your Services and Vehicles  <span class="badge grad">Services</span></h3>
             <div class="col">
 
-            <div class="card w-75 mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    
-                <div class="card-header">
-                    TAXI
-                  </div>
-                  <div class="col-md-4">
-                    <img src="../../static/images/nissan-note-grey.jpg" class="img-fluid rounded-start ms-1" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">NISSAN OTE</h5>
-                      <p class="card-text">2010 model. Grey in colour</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Location: SOUTH B</li>
-                        <li class="list-group-item">Range: Nairobi and Environs</li>
-                      </ul>
+              {% if service %}
+              <div class="col">
+                <div class="card w-75 mb-3" style="max-width: 540px;">
+                  <div class="row g-0">
+      
+                    <div class="card-header">
+                      {{ service.vehicle }}
+                    </div>
+                    <div class="col-md-4">
+                      <img src="../../static/images/nissan-note-grey.jpg" class="img-fluid rounded-start ms-1" alt="...">
+                    </div>
+                    <div class="col-md-8">
                       <div class="card-body">
-                        <a href="#" class="card-link">More info</a>
+                        <h5 class="card-title">{{ service.type }}</h5>
+                        <p class="card-text">{{ service.description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ service.date }}</small></p>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">{{ service.location }}</li>
+                          <li class="list-group-item">Range: Nairobi and Environs</li>
+                        </ul>
+                        <div class="card-body">
+                          <a href="#" class="card-link">More info</a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              
+              {% endif %}
             </div>
 
             <div class="col">

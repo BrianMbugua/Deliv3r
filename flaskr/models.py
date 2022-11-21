@@ -18,6 +18,18 @@ class Courier(db.Model, UserMixin):
 
     def __repr__(self):
         return '<Firstname  %r>' % self.firstname 
+        
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):   
+        return True           
+
+    def is_anonymous(self):
+        return False          
+
+    def get_id(self):         
+        return str(self.id)
 
 class Services(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

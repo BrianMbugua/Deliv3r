@@ -57,10 +57,12 @@ def logout():
     return redirect(url_for('main.home'))
 
 #Courier home page route
-@courier.route('/home')
+@courier.route('/home', methods=['POST', 'GET'])
 def home():
+    
+    service = Services.query.filter_by(email=current_user.email).first()
 
-    return render_template("courier_home.html")
+    return render_template("courier_home.html", service=service)
 
 #Courier offers page route
 @courier.route('/offers')
