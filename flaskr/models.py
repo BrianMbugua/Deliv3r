@@ -19,6 +19,17 @@ class Courier(db.Model, UserMixin):
     def __repr__(self):
         return '<Firstname  %r>' % self.firstname 
 
+class Services(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(20), nullable=False)
+    location = db.Column(db.String(20), nullable=False)
+    vehicle = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(20), nullable=False)
+    photo = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return '<Vehicle %r>' % self.vehicle
+
 
 ##############################################################################################################
 #CUSTOMER MODELS

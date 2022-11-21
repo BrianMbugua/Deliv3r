@@ -60,3 +60,15 @@ def logout():
 def home():
 
     return render_template("courier_home.html")
+
+@courier.route('/offers')
+def offers():
+    
+
+    return render_template("offers.html")
+
+@courier.route('/services')
+def services():
+
+    return render_template("services.html")
+
