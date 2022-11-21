@@ -2,43 +2,120 @@
 
 {% block content %}
 
+
+<div class="section">
+  <div class="container contain">
+     
+    <div class="row pb-2">
+      <div class="col">
+        <h3 class="text-center">Add <span class="badge grad">Services</span></h3>
+        
+        <form method="POST" action="/courier/services" enctype="multipart/form-data" class="align-center">
+          {{ form.hidden_tag() }}
+              <div class="col-lg-7">
+
+                      {% if form.type.errors %}
+                          {{ form.type(class="form-control my-3 p-2 is-invalid", placeholder="First Name")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.type.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ form.type(class="form-control my-3 p-2", placeholder="Type")}}
+                      {% endif %}    
+
+              </div>
+              <div class="col-lg-7">
+                      {{ form.location(class="form-control my-3 p-2", placeholder="Location") }}
+              </div>
+              <div class="col-lg-7">
+                  {% if form.vehicle.errors %}
+                  {{ form.vehicle(class="form-control my-3 p-2 is-invalid", placeholder="Vehicle Type")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.vehicle.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.vehicle(class="form-control my-3 p-2", placeholder="Vehicle Type" )}}
+              {% endif %}    
+
+              </div>
+              <div class="col-lg-7">
+                  {% if form.description.errors %}
+                  {{ form.description(class="form-control is-invalid", placeholder="Description")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.description.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.description(class="form-control my-3 p-2", placeholder="Description")}}
+              {% endif %}    
+
+              </div>
+              <div class="col-lg-7">
+                  {% if form.photo.errors %}
+                  {{ form.photo(class="form-control is-invalid ", placeholder="Passport Photo")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.photo.errors %}
+                          <span class="py-2">{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.photo(class="form-control my-3 p-2", placeholder="Passport Photo")}}
+              {% endif %}    
+
+              </div>
+          </fieldset>
+          <div class="col-lg-7">
+              {{ form.submit(class="form-control btn-1 mb-3") }}
+          </div>             
+      </div>
+    </div>
+      <hr>
+
+</div>
+
+
+
     <div class="section">
-        <div class="container contain">
-            <div class="row pb-2">
-                <h3 class="text-center">Add Service<span class="badge grad">Services</span></h3>
-                <div class="col">
-
-                    <div class="card w-75 mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            
-                        <div class="card-header">
-                            TAXI
-                          </div>
-                          <div class="col-md-4">
-                            <img src="../../static/images/nissan-note-grey.jpg" class="img-fluid rounded-start ms-1" alt="...">
-                          </div>
-                          <div class="col-md-8">
-                            <div class="card-body">
-                              <h5 class="card-title">NISSAN OTE</h5>
-                              <p class="card-text">2010 model. Grey in colour</p>
-                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                              <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Location: SOUTH B</li>
-                                <li class="list-group-item">Range: Nairobi and Environs</li>
-                              </ul>
-                              <div class="card-body">
-                                <a href="#" class="card-link">More info</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+      <div class="container contain">
+        
+        <div class="row pb-2">
+          <h3 class="text-center">Your<span class="badge grad">Services</span></h3>
+          
+          <div class="col">
+    
+            <div class="card w-75 mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+    
+                <div class="card-header">
+                  TAXI
+                </div>
+                <div class="col-md-4">
+                  <img src="../../static/images/nissan-note-grey.jpg" class="img-fluid rounded-start ms-1" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">NISSAN OTE</h5>
+                    <p class="card-text">2010 model. Grey in colour</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Location: SOUTH B</li>
+                      <li class="list-group-item">Range: Nairobi and Environs</li>
+                    </ul>
+                    <div class="card-body">
+                      <a href="#" class="card-link">More info</a>
                     </div>
-                <form action="/courier/services" enctype="multipart/form-data">
-
-                </form>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
 {% endblock content %}

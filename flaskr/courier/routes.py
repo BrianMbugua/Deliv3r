@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flaskr import bcrypt, db, main
-from flaskr.courier.forms import RegistrationForm, LoginForm
+from flaskr.courier.forms import RegistrationForm, LoginForm, ServicesForm
 from flaskr.models import Courier
 from flask_login import login_user, login_required, current_user, logout_user
 
@@ -72,6 +72,7 @@ def offers():
 @courier.route('/services')
 def services():
     flash("Whats going on", "danger")
-    
-    return render_template("courier_services.html")
+    form = ServicesForm()
+
+    return render_template("courier_services.html", form=form)
 

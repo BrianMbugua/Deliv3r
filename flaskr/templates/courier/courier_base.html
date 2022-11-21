@@ -35,21 +35,22 @@
       </nav>
 
       <!-- Render Flash Messages on webpage -->
-    <div class="section position-absolute bottom-0 start-50 translate-middle-x">
-      <div class="container text-center">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, message in messages %}
+      
+        <div class="section">
+          <div class="container text-center">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
             <div class="alert alert-{{ category }}">
               <p class="">{{ message }}</p>
             </div>
-          
-          {% endfor%}
-    
-        {% endif %}
-        {% endwith %}
-      </div>
-    </div>
+      
+            {% endfor%}
+      
+            {% endif %}
+            {% endwith %}
+          </div>
+        </div>
 
       {% block content %}
 

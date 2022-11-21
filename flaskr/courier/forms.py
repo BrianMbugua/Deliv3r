@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, TextAreaField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError 
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 from flaskr.models import Courier
 
 class RegistrationForm(FlaskForm):
@@ -28,4 +29,8 @@ class LoginForm(FlaskForm):
 
 class ServicesForm(FlaskForm):
     type = SelectField(u'Service Type', choices=[('TXI', 'Taxi'), ('CH', 'Cargo Heavy'), ('CM', 'Cargo Medium'), ('CL', 'Cargo Light'), ('CF', 'Cargo Feather')])
-    
+    location = StringField('Location', validators=[DataRequired()])
+    vehicle = StringField('Vehicle', validators=[DataRequired()])
+    description = TextAreaField('Vehicle description')
+    photo = FileField('Photo', validators=[FileAllowed(['jpg', 'png']), DataRequired()])
+    submit = SubmitField('ADD')
