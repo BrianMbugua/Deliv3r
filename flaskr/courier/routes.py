@@ -70,11 +70,9 @@ def profile():
     form = ProfileForm()
     courier = Courier.query.filter_by(email=current_user.email).first()
     if request.method == "GET":
-        if form.validate_on_submit():
-            form.firstname.data = current_user.firstname
-            form.lastname.data = current_user.lastname
-            form.email.data = current_user.email
-        flash("Enter Correct Data", "danger")    
+        form.firstname.data = current_user.firstname
+        form.lastname.data = current_user.lastname
+        form.email.data = current_user.email  
     else:
         current_user.firstname = form.firstname.data
         current_user.lastname = form.lastname.data
@@ -104,4 +102,9 @@ def services():
 
 
     return render_template("courier_services.html", form=form, service=service)
+
+@courier.route("/jobs")
+def jobs():
+
+    return render_template("courier_jobs.html")
 
