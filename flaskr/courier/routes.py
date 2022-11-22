@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flaskr import bcrypt, db, main
-from flaskr.courier.forms import RegistrationForm, LoginForm, ServicesForm
+from flaskr.courier.forms import RegistrationForm, LoginForm, ServicesForm, ProfileForm
 from flaskr.models import Courier, Services
 from flask_login import login_user, login_required, current_user, logout_user
 
@@ -65,11 +65,27 @@ def home():
     return render_template("courier_home.html", service=service)
 
 #Courier offers page route
-@courier.route('/offers')
-def offers():
+@courier.route('/profile', methods=["POST", "GET"])
+def profile():
+    form = ProfileForm()
+    courier = Courier.query.filter_by(email=current_user.email).first()
+    if request.method == "GET":
+        if form.validate_on_submit():
+            form.firstname.data = current_user.firstname
+            form.lastname.data = current_user.lastname
+            form.email.data = current_user.email
+        flash("Enter Correct Data", "danger")    
+    else:
+        current_user.firstname = form.firstname.data
+        current_user.lastname = form.lastname.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash("Account Information Updated SUccessfully!", "success")
+        return render_template("courier_profile.html", form=form)
 
 
-    return render_template("offers.html")
+
+    return render_template("courier_profile.html", form=form)
 
 @courier.route('/services', methods=["POST","GET"])
 def services():

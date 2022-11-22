@@ -1,0 +1,90 @@
+{% extends "courier_base.html" %}
+
+{% block content %}
+    <div class="section">
+        <div class="container contain">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center">Your<span class="badge grad">Profile</span></h3>
+
+                    <div class="card w-80 mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+            
+                          <div class="card-header">
+                          </div>
+                          <div class="col-md-4">
+                            <img src="" class="img-fluid rounded-start ms-1" alt="Profile Picture">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ current_user.lastname }} {{current_user.firstname }}</h5>
+                              <p class="card-text">{{ current_user.email }}</p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"></li>
+                              </ul>
+                              <div class="card-body">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="section">
+        <div class="container contain">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center">Edit<span class="badge grad">Profile</span></h3>
+
+                    <form method="POST" action="/courier/profile" enctype="multipart/form-data" class="">
+                        {{ form.hidden_tag() }}
+                        <div class="col-lg-7">
+              
+                          {% if form.firstname.errors %}
+                          {{ form.firstname(class="form-control my-3 p-2 is-invalid", placeholder="First Name")}}
+                          <div class="invalid-feedback">
+                            {% for error in form.firstname.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.firstname(class="form-control my-3 p-2", placeholder="First Name")}}
+                          {% endif %}
+              
+                        </div>
+                        <div class="col-lg-7">
+                          {{ form.lastname(class="form-control my-3 p-2", placeholder="Last Name") }}
+                        </div>
+                        <div class="col-lg-7">
+                          {% if form.email.errors %}
+                          {{ form.email(class="form-control my-3 p-2 is-invalid", placeholder="Email")}}
+                          <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.email(class="form-control my-3 p-2", placeholder="Email" )}}
+                          {% endif %}
+              
+                        </div>
+                        </fieldset>
+                        <div class="col-lg-7">
+                          {{ form.submit(class="form-control btn-1 mb-3") }}
+                        </div>
+                      </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

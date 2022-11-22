@@ -34,3 +34,12 @@ class ServicesForm(FlaskForm):
     description = TextAreaField('Vehicle description')
     photo = FileField('Photo', validators=[FileAllowed(['jpg', 'png']), DataRequired()])
     submit = SubmitField('ADD')
+
+class ProfileForm(FlaskForm):
+    firstname = StringField('First Name', validators=[DataRequired(), Length(min=2, max=10)])
+    lastname = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=10)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])   
+    confirmpassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Update')
+
