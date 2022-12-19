@@ -46,9 +46,7 @@ class Services(db.Model, UserMixin):
 
 ##############################################################################################################
 
-@login_manager.user_loader 
-def load_user(user_id):
-    return Customer.query.get(int(user_id))
+
 
 #CUSTOMER MODELS
 #Create Customer database table
