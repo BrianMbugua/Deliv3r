@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, flash, redirect, request, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
 from flaskr import db, bcrypt
-from flaskr.models import Customer
-from flaskr.customer.forms import RegistrationForm, LoginForm
+from flaskr.models import Customer, Jobs
+from flaskr.customer.forms import RegistrationForm, LoginForm, JobsForm
 
 
 customer = Blueprint('customer', __name__, url_prefix='/customer', static_folder="static", template_folder="../templates/customer")
@@ -63,4 +63,22 @@ def logout():
 @customer.route('/home')
 def home():
     return render_template("customer_home.html")
+
+
+@customer.route("/offers", methods=['POST', 'GET'])
+def offers():
+    form = JobsForm()
+
+    job = Jobs.query.filter_by(username=current_user.username).first()
+
+    if request.method == "POST" and form.validate_on_submit():
+        job = Jobs(username=current_user.username, type=form.type.data, pick_location=form.pick_location.data, drop_location=form.drop_location.data,
+                           description=form.description.data, vehicle=form.vehicle.data)
+        db.session.add(job)
+        db.session.commit()
+        flash("Job Created Successfuly", "success")
+        return redirect(url_for('customer.offers'))
+            
+
+    return render_template("customer_offers.html", form=form)
 

@@ -45,6 +45,11 @@ class Services(db.Model, UserMixin):
 
 
 ##############################################################################################################
+
+@login_manager.user_loader 
+def load_user(user_id):
+    return Customer.query.get(int(user_id))
+
 #CUSTOMER MODELS
 #Create Customer database table
 class Customer(db.Model, UserMixin):
@@ -55,3 +60,15 @@ class Customer(db.Model, UserMixin):
 
     def __repr__(self):
         return '<Username %r>' % self.username
+
+class Jobs(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Integer, nullable=False)
+    type = db.Column(db.String(20), nullable=False)
+    pick_location = db.Column(db.String(20), nullable=False)
+    drop_location = db.Column(db.String(20), nullable=False)
+    vehicle = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return '<Vehicle %r>' % self.type

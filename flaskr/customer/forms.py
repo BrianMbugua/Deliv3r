@@ -25,3 +25,11 @@ class LoginForm(FlaskForm):
         customer = Customer.query.filter_by(email=email.data).first()
         if not customer:
             raise ValidationError('Email is NOT linked to any account.')
+
+class JobsForm(FlaskForm):
+    type = SelectField(u'Job Type', choices=[('Job Type', ''),('Taxi', 'Taxi'), ('Cargo Heavy', 'Cargo Heavy'), ('Cargo Medium', 'Cargo Medium'), ('Cargo Light', 'Cargo Light'), ('Cargo Feather', 'Cargo Feather')], validators=[DataRequired()])
+    pick_location = StringField('Pick-up Location', validators=[DataRequired()])
+    drop_location = StringField('Drop-off Location', validators=[DataRequired()])
+    vehicle = SelectField(u'Vehicle Required', choices=[('', ''), ('PICKUP', 'PICKUP'), ('CAR', 'CAR'), ('LORRY', 'LORRY'), ('MOTORCYCLE', 'MOTORCYCLE'), ('TROLLEY', 'TROLLEY')], validators=[DataRequired()])
+    description = TextAreaField('Job description')
+    submit = SubmitField('ADD')

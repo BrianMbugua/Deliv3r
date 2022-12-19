@@ -1,0 +1,78 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+
+<div class="section">
+    <div class="container contain">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center">Create <span class="badge grad">Job</span></h3>
+                <form method="POST" action="/customer/offers" enctype="multipart/form-data" class="">
+                    {{ form.hidden_tag() }}
+                    <div class="col-lg-7">
+          
+                      {% if form.type.errors %}
+                      {{ form.type(class="form-control my-3 p-2 is-invalid", placeholder="Type")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.type.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.type(class="form-control my-3 p-2", placeholder="Type")}}
+                      {% endif %}
+          
+                    </div>
+                    <div class="col-lg-7">
+                      {{ form.pick_location(class="form-control my-3 p-2", placeholder="Pick-up Location") }}
+                    </div>
+                    <div class="col-lg-7">
+                      {% if form.drop_location.errors %}
+                      {{ form.vehicle(class="form-control my-3 p-2 is-invalid", placeholder="Drop-off Location")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.drop_location.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.drop_location(class="form-control my-3 p-2", placeholder="Drop-off Location" )}}
+                      {% endif %}
+          
+                    </div>
+                    <div class="col-lg-7">
+                      {% if form.description.errors %}
+                      {{ form.description(class="form-control is-invalid", placeholder="Job Description")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.description(class="form-control my-3 p-2", placeholder="Job Description")}}
+                      {% endif %}
+          
+                    </div>
+                    <div class="col-lg-7">
+                      {% if form.vehicle.errors %}
+                      {{ form.vehicle(class="form-control is-invalid ", placeholder="Vehicle Required")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.vehicle.errors %}
+                        <span class="py-2">{{ error }}</span>
+                        {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.vehicle(class="form-control my-3 p-2", placeholder="Vehicle Required")}}
+                      {% endif %}
+          
+                    </div>
+                    </fieldset>
+                    <div class="col-lg-7">
+                      {{ form.submit(class="form-control btn-1 mb-3") }}
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
