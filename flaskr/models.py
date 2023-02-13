@@ -3,9 +3,11 @@ from datetime import datetime
 from flask_login import UserMixin
 
 #Initialise logged in Courier with Courier id
+
 @login_manager.user_loader 
 def load_user(user_id):
-    return Courier.query.get(int(user_id))
+    return Courier.query.get(int(user_id)) and Customer.query.get(int(user_id))
+
 
 #COURIER MODELS
 #Create courier database table with its fields
@@ -45,8 +47,6 @@ class Services(db.Model, UserMixin):
 
 
 ##############################################################################################################
-
-
 
 #CUSTOMER MODELS
 #Create Customer database table
