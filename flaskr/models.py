@@ -70,3 +70,4 @@ class Jobs(db.Model, UserMixin):
 
     def __repr__(self):
         return '<Vehicle %r>' % self.type
+        

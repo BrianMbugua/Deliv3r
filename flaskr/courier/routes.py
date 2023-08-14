@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flaskr import bcrypt, db, main
 from flaskr.courier.forms import RegistrationForm, LoginForm, ServicesForm, ProfileForm
-from flaskr.models import Courier, Services
+from flaskr.models import Courier, Services, Jobs
 from flask_login import login_user, login_required, current_user, logout_user
 
 
@@ -105,6 +105,6 @@ def services():
 
 @courier.route("/jobs")
 def jobs():
-
+    jobs = Jobs.query.filter_by(username=current_user.username).first()
     return render_template("courier_jobs.html")
 
